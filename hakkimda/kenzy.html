@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenzyoat Profil</title>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    color: white;
+  }
+/* Kart hover efekti */
+.profile-card {
+  transition: 
+    transform .35s ease,
+    box-shadow .45s ease,
+    background .35s ease,
+    border .35s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+}
+
+.profile-card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 0 35px rgba(179,157,219,0.55), 0 0 60px rgba(0,0,0,0.9);
+  background: rgba(20,20,20,0.55);
+  border: 1px solid rgba(179,157,219,0.4);
+}
+
+/* Profil foto hover */
+.profile-card:hover img {
+  transform: scale(1.07);
+  box-shadow: 0 0 15px #b39ddb;
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* İsim hover rengi */
+.profile-card:hover .username {
+  color: #ff79c6;
+  text-shadow: 0 0 15px #ff79c6;
+}
+
+/* Sosyal ikonlar hover */
+.profile-card .social-icons a {
+  transition: transform .3s ease, color .3s ease, text-shadow .3s ease;
+}
+
+.profile-card:hover .social-icons a {
+  color: #b39ddb;
+  text-shadow: 0 0 10px #b39ddb;
+}
+
+/* Sosyal ikonların kendi hover'ı daha da güçlü olsun */
+.profile-card .social-icons a:hover {
+  transform: scale(1.6);
+  color: #ff79c6;
+  text-shadow: 0 0 15px #ff79c6;
+}
+
+  /* ----------------------------------- */
+  /* GİRİŞ EKRANI */
+  /* ----------------------------------- */
+  #entry-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 999;
+    transition: opacity 0.7s ease;
+  }
+
+  #entry-screen h1 {
+    font-size: 45px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    opacity: 0.85;
+    color: #b39ddb;
+    text-shadow: 0 0 15px #b39ddb, 0 0 30px #6d53a6;
+    animation: pulse 2.5s infinite;
+  }
+
+  #entry-screen p {
+    margin-top: 15px;
+    font-size: 18px;
+    opacity: 0.6;
+    color: #dcdcdc;
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); opacity: .5; }
+    50%  { transform: scale(1.08); opacity: 1; }
+    100% { transform: scale(1); opacity: .5; }
+  }
+
+  /* ----------------------------------- */
+  /* ARKA PLAN VİDEO */
+  /* ----------------------------------- */
+  #background-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+
+  body::before {
+    content:"";
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+  }
+
+  /* ----------------------------------- */
+  /* ANA MENÜ */
+  /* ----------------------------------- */
+  #main {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity .7s ease;
+  }
+
+  .profile-card {
+    background: rgba(0,0,0,0.45);
+    border-radius: 30px;
+    padding: 50px 70px;
+    text-align: center;
+    box-shadow: 0 0 30px 20px rgba(0,0,0,0.8);
+  }
+
+  .profile-card img {
+    width:150px; height:150px;
+    border-radius:50%;
+    border:4px solid #fff;
+  }
+
+  .username {
+    font-size:34px;
+    color:#b39ddb;
+    margin-top:15px;
+    font-weight:bold;
+    animation: colorChange 4s infinite alternate;
+  }
+
+  .bio {
+    font-size:18px;
+    color:#d3d3d3;
+    margin-top:10px;
+  }
+
+  .social-icons {
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+  }
+
+  .social-icons a {
+    font-size:28px;
+    color:white;
+    transition: transform .3s, color .3s;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.5) rotate(-10deg);
+    color:#b39ddb;
+  }
+
+  @keyframes colorChange {
+    0%{color:#b39ddb}
+    50%{color:#ff79c6}
+    100%{color:#8be9fd}
+  }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Giriş Ekranı -->
+<div id="entry-screen">
+  <h1>Giriş için tıkla</h1>
+  <p>Kenzy dünyasına hoş geldin</p>
+</div>
+
+<!-- Arkaplan Video -->
+<video id="background-video" autoplay loop muted>
+  <source src="suzuya.mp4" type="video/mp4">
+</video>
+
+<!-- Müzik -->
+<audio id="background-audio" loop muted>
+  <source src="suzuya3.mp3" type="audio/mp3">
+</audio>
+
+<!-- ANA MENÜ -->
+<div id="main">
+  <div class="profile-card">
+    <img src="https://i.pinimg.com/236x/b6/ff/67/b6ff6759bae97649ca0fb676086e9f61.jpg">
+    <div class="username">Kenzy</div>
+    <div class="bio">dark triad</div>
+
+    <div class="social-icons">
+      <a href="https://www.instagram.com/kenzyoat/"><i class="fab fa-instagram"></i></a>
+      <a href="https://discord.com/users/kenzyoat"><i class="fab fa-discord"></i></a>
+      <a href="https://open.spotify.com/user/31mlfqjzm6m5l4wbz2oc2bx6wkea"><i class="fab fa-spotify"></i></a>
+      <a href="https://www.tiktok.com/@kenzyoat"><i class="fab fa-tiktok"></i></a>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  const entry = document.getElementById("entry-screen");
+  const main = document.getElementById("main");
+  const audio = document.getElementById("background-audio");
+
+  entry.addEventListener("click", () => {
+    entry.style.opacity = "0";               // fade-out giriş
+    setTimeout(() => {
+      entry.style.display = "none";          // tamamen kaybolur
+      main.style.opacity = "1";              // ana menü görünür
+      audio.muted = false;                   // sesi aç
+      audio.play();                          // müzik başlat
+    }, 600);
+  });
+</script>
+
+</body>
+</html>
